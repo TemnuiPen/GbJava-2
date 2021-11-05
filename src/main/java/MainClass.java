@@ -44,30 +44,48 @@ public class MainClass {
                 case CAT -> {
                     for (int barrier : barriers) {
                         if (barrier > jumpLimit) {
-                            cat1.run(barrier);
+                            boolean result = cat1.run(barrier);
+                            if (!result) {
+                                break;
+                            }
                         }
                         else {
-                            cat1.jump(barrier);
+                            boolean result = cat1.jump(barrier);
+                            if (!result) {
+                                break;
+                            }
                         }
                     }
                 }
                 case HUMAN -> {
                     for (int barrier : barriers) {
                         if (barrier > jumpLimit) {
-                            human1.run(barrier);
+                            boolean result = human1.run(barrier);
+                            if (!result) {
+                                break;
+                            }
                         }
                         else {
-                            human1.jump(barrier);
+                            boolean result = human1.jump(barrier);
+                            if (!result) {
+                                break;
+                            }
                         }
                     }
                 }
                 case ROBOT -> {
                     for (int barrier : barriers) {
                         if (barrier > jumpLimit) {
-                            robot1.run(barrier);
+                            boolean result = robot1.run(barrier);
+                            if (!result) {
+                                break;
+                            }
                         }
                         else {
-                            robot1.jump(barrier);
+                            boolean result = robot1.jump(barrier);
+                            if (!result) {
+                                break;
+                            }
                         }
                     }
                 }
@@ -76,5 +94,4 @@ public class MainClass {
             System.out.println("");
         }
     }
-
 }

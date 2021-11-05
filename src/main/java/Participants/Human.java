@@ -15,22 +15,26 @@ public class Human implements Participants {
     }
 
     @Override
-    public void run(int length) {
+    public boolean run(int length) {
         if (length < maxRun) {
             System.out.println("Human pass the barrier");
+            return true;
         }
         else {
             System.out.println("Human is not able to pass the barrier");
+            return false;
         }
     }
 
     @Override
-    public void jump(int height) {
+    public boolean jump(int height) {
         if (height < maxRun) {
             System.out.println("Human pass the barrier");
+            return true;
         }
         else {
             System.out.println("Human is not able to pass the barrier");
+            return false;
         }
     }
 }
