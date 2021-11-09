@@ -12,14 +12,20 @@ public class MainClass {
     static String[][] stringArray = {
             {"1", "3", "2", "3"},
             {"2", "4", "3", "4"},
-            {"3", "5", "4", "5"},
+            {"3", "5", "7", "5"},
             {"4", "6", "5", "6"}
     };
     final static int ARRAY_SIZE = stringArray.length;
 
     public static void main(String[] args) throws MyArraySizeException, MyArrayDataException {
-        checkArraySize(stringArray);
-        System.out.println(arraySum);
+        try{
+            checkArraySize(stringArray);
+            System.out.println(arraySum);
+        }catch (MyArraySizeException e) {
+            System.out.println("Массив должен иметь размер 4х4!!!" );
+        }catch (MyArrayDataException e) {
+            e.printException();
+        }
     }
 
     static void checkArraySize(String[][] stringArray) throws MyArraySizeException, MyArrayDataException {
