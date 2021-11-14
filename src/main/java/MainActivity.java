@@ -17,6 +17,7 @@ Task:
  */
 
 public class MainActivity {
+    static PhoneNumberList phoneNumberList = new PhoneNumberList();
     static String[] stringArray = {
             "Hello",
             "world",
@@ -29,7 +30,6 @@ public class MainActivity {
     static ArrayList<String> uniqueArray = new ArrayList<>();
     static HashMap<String, Integer> quantityOfValue = new HashMap<>();
     public static void main(String[] args) {
-        // first task
         for(int i = 0; i < stringArray.length; i++) {
             if(quantityOfValue.containsKey(stringArray[i])) {
                 quantityOfValue.put(stringArray[i],quantityOfValue.get(stringArray[i]) + 1);
@@ -42,6 +42,15 @@ public class MainActivity {
         System.out.println(uniqueArray);
         System.out.println("Всего слов в массиве");
         System.out.println(quantityOfValue);
+        System.out.println("Первое задание выполнено");
+        System.out.println("____________________________________________________________________________");
+        System.out.println("");
 
+        System.out.println("Второе задание");
+        phoneNumberList.add("key1", "3388");
+        phoneNumberList.add("key2", "4477");
+        phoneNumberList.add("key3", "5599");
+        phoneNumberList.add("key1", "6660");
+        System.out.println(phoneNumberList.get("key1"));
     }
 }
