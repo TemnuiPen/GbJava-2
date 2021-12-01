@@ -30,17 +30,18 @@ public class MyClient {
     }
 
     public void manageMessages() throws IOException {
-        try {
-            printMessage();
-        } catch (IOException e){
-            e.printStackTrace();
+        if(!in.readUTF().equals("")) {
+            try {
+                printMessage();
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+            try {
+                sendMessage();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        try {
-            sendMessage();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 
     private void sendMessage() throws IOException {
@@ -54,7 +55,6 @@ public class MyClient {
                 exception.printStackTrace();
             }
         });
-
     }
 
     private void printMessage() throws IOException{

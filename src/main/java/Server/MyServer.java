@@ -20,8 +20,9 @@ Task:
  */
 
 public class MyServer {
+    static MyClient myClient = new MyClient();
 
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         establishServerConnection();
     }
 
@@ -34,23 +35,28 @@ public class MyServer {
             System.out.println("Клиент подключился");
             DataInputStream in = new DataInputStream(socket.getInputStream());
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-            new Thread(() -> {
-                try {
-                    sendMessage(out);
-                } catch (IOException exception) {
-                    exception.printStackTrace();
-                }
-            }).start();
-            new Thread(() -> {
-                boolean flag = true;
-                try {
-                    while (flag) {
-                        flag = printMessage(in, out);
+            while (true) {
+                new Thread(() -> {
+                    try {
+                        sendMessage(out);
+                    } catch (IOException exception) {
+                        exception.printStackTrace();
                     }
-                } catch (IOException exception) {
-                    exception.printStackTrace();
+                }).start();
+                myClient.manageMessages(); // Запуск обработки и отправки сообщений в MyClient
+                if (!in.readUTF().equals("")) {
+                    new Thread(() -> {
+                        boolean flag = true;
+                        try {
+                            while (flag) {
+                                flag = printMessage(in);
+                            }
+                        } catch (IOException exception) {
+                            exception.printStackTrace();
+                        }
+                    }).start();
                 }
-            }).start();
+            }
         } catch (IOException exception) {
             exception.printStackTrace();
         }
@@ -63,7 +69,7 @@ public class MyServer {
         out.writeUTF(str);
     }
 
-    private static boolean printMessage(DataInputStream in, DataOutputStream out) throws IOException {
+    private static boolean printMessage(DataInputStream in) throws IOException {
         String str = in.readUTF();
         if (str.equals("/end")) {
             return false;
