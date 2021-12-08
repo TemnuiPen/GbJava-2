@@ -1,36 +1,47 @@
 package Box;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Box {
-    static private String fruitType;
-    static private double fruitWeight;
-    static private double boxWeight;
-    static private int amount;
-    static private ArrayList<Double> boxes = new ArrayList<>();
-    static private ArrayList<String> boxType = new ArrayList<>();
+    public Box() {
+        //empty slot
+    }
+    private int index;
+    private String fruitType;
+    private double fruitWeight;
+    private double boxWeight;
+    private int amount;
+    private List<Double> boxes = new ArrayList<>();
+    private List<String> boxType = new ArrayList<>();
 
-    public static double getWeight() {
+    public double getWeight() {
         boxWeight = fruitWeight * amount;
-        boxes.add(boxWeight);
-        boxType.add(fruitType);
+        boxes.add(index, boxWeight);
         return boxWeight;
     }
-    public static boolean compare(double someBoxWeight) {
+    public boolean compare(double someBoxWeight) {
         return boxWeight > someBoxWeight;
     }
-    public static double changeBox(String type, double value) {
+    public double changeBox(String type, double weight) {
         if(fruitType.equals(type)) {
-            boxWeight = value + boxWeight;
+            boxWeight = boxWeight + weight;
+            boxes.set(index, boxWeight);
             return boxWeight;
         }
         else {
-            return value;
+            boxes.set(index, weight);
+            boxType.set(index,type);
+            fruitType = type;
+            boxWeight = weight;
+            return weight;
         }
     }
-    public static void addFruits(double weight, double amount, String type) {
-        amount += amount;
+    public void addFruits(double weight, int amount, String type, int index) {
+        this.amount += amount;
         fruitType = type;
         fruitWeight = weight;
+        this.index = index;
+        boxType.add(index,fruitType);
     }
 }

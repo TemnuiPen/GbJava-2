@@ -1,11 +1,14 @@
-package Server;
+package MyActivity;
 
 
+
+import Box.Box;
+import Fruits.Apple;
+import Fruits.Orange;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 /*
@@ -32,7 +35,10 @@ Task:
 public class MyActivity {
     private static Integer[] someArray = new Integer[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     private static List<Object> someArrayList = new ArrayList<>();
-    private static HashMap<String, Double> boxValues = new HashMap<>();
+
+    static Box box = new Box();
+    static Apple apple = new Apple();
+    static Orange orange = new Orange();
 
     public static void main(String[] args) throws IOException {
         // задания 1 и 2
@@ -44,7 +50,16 @@ public class MyActivity {
         changeArrayToArrayList(someArray);
         changeArrayToArrayList(arrayForTest);
         // задание 3
+        System.out.println("______________________________________________________");
+        System.out.println("");
 
+        box.addFruits(apple.getFruitWeight(), 5, apple.getFruitType(),0);
+        System.out.println("Box weight is: " + box.getWeight() );
+        System.out.println("Is 4kg box smaller than that one? answer: " + box.compare(4));
+        System.out.println("Changing box, adding apples, total box weight is: " + box.changeBox(apple.getFruitType()
+                , 7));
+        System.out.println("Changing box, adding oranges, total box weight is: : " + box.changeBox(orange.getFruitType()
+                , 3));
     }
     private static void changeElementPosition(int firstIndex, int secondIndex) {
         int firstNumber = someArray[firstIndex];
